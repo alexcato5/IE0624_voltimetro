@@ -2,18 +2,24 @@
 
 <item itemtype="Pcd8544" CircId="Pcd8544-1" mainComp="false" Show_id="true" Show_Val="false" Pos="476,312" rotation="0" hflip="1" vflip="1" label="Pcd8544-1" idLabPos="-32,-66" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Subcircuit" CircId="Uno-2" mainComp="false" Show_id="true" Show_Val="false" Pos="396,452" rotation="0" hflip="1" vflip="1" label="Uno-2" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="false">
+<item itemtype="Subcircuit" CircId="Uno-2" mainComp="false" Show_id="true" Show_Val="false" Pos="392,452" rotation="0" hflip="1" vflip="1" label="Uno-2" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="false">
 <mainCompProps itemtype="MCU" CircId="2_mega328-109" mainComp="true" Show_id="false" Show_Val="false" Pos="20,20" rotation="0" hflip="1" vflip="1" label="2_mega328-109" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="voltimetro/build/arduino.avr.uno/voltimetro.ino.hex" Auto_Load="false" Rst_enabled="true" Ext_Osc="true" Wdt_enabled="false" />
 </item>
 
-<item itemtype="Connector" uid="connector-3" startpinid="Pcd8544-1-PinScl" endpinid="Uno-2-3" pointList="508,352,508,388,360,388,360,492,404,492" />
+<item itemtype="SerialPort" CircId="SerialPort-9" mainComp="false" Show_id="false" Show_Val="false" Pos="676,384" rotation="0" hflip="1" vflip="1" label="SerialPort-9" idLabPos="-20,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Port="COM1" Baudrate="9600 Bauds" DataBits="8 _Bits" StopBits="1 _Bits" />
 
-<item itemtype="Connector" uid="connector-4" startpinid="Pcd8544-1-PinDc" endpinid="Uno-2-5" pointList="476,352,476,384,356,384,356,508,404,508" />
+<item itemtype="Connector" uid="connector-10" startpinid="Pcd8544-1-PinScl" endpinid="Uno-2-3" pointList="508,352,508,388,360,388,360,492,400,492" />
 
-<item itemtype="Connector" uid="connector-5" startpinid="Pcd8544-1-PinRst" endpinid="Uno-2-6" pointList="444,352,444,380,352,380,352,516,404,516" />
+<item itemtype="Connector" uid="connector-11" startpinid="Pcd8544-1-PinDc" endpinid="Uno-2-5" pointList="476,352,476,384,356,384,356,508,400,508" />
 
-<item itemtype="Connector" uid="connector-6" startpinid="Pcd8544-1-PinSi" endpinid="Uno-2-4" pointList="492,352,492,412,376,412,376,500,404,500" />
+<item itemtype="Connector" uid="connector-12" startpinid="Pcd8544-1-PinRst" endpinid="Uno-2-6" pointList="444,352,444,380,352,380,352,516,400,516" />
 
-<item itemtype="Connector" uid="connector-7" startpinid="Pcd8544-1-PinCs" endpinid="Uno-2-7" pointList="460,352,460,376,348,376,348,524,404,524" />
+<item itemtype="Connector" uid="connector-13" startpinid="Pcd8544-1-PinSi" endpinid="Uno-2-4" pointList="492,352,492,412,376,412,376,500,400,500" />
+
+<item itemtype="Connector" uid="connector-14" startpinid="Pcd8544-1-PinCs" endpinid="Uno-2-7" pointList="460,352,460,376,348,376,348,524,400,524" />
+
+<item itemtype="Connector" uid="Connector-19" startpinid="SerialPort-9-pin1" endpinid="Uno-2-1" pointList="636,392,528,392,528,440,380,440,380,476,400,476" />
+
+<item itemtype="Connector" uid="Connector-20" startpinid="SerialPort-9-pin0" endpinid="Uno-2-0" pointList="636,376,532,376,532,444,384,444,384,468,400,468" />
 
 </circuit>

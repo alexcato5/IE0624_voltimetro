@@ -29,6 +29,10 @@ bool modo_AC = false;
 void setup() {
   // Se define la resolución de la pantalla
   lcd.begin(84, 48);
+
+  // Se define el baudrate para el puerto serial USART
+  Serial.begin(9600, SERIAL_8N1);
+
 }
 
 void refrescarPantalla(){
@@ -65,13 +69,24 @@ void refrescarPantalla(){
   else { lcd.print(" V"); }
 }
 
+void enviarDatos(){
+  Serial.print(volt1);
+  Serial.flush();
+  Serial.print(volt2);
+  Serial.flush();
+  Serial.print(volt3);
+  Serial.flush();
+  Serial.print(volt4);
+  Serial.flush();
+}
+
 void loop() {
   //volt1 = [analogRead(A1) - 512] * 48/1023; 
   //volt2 = [analogRead(A2) - 512] * 48/1023;
   //volt3 = [analogRead(A3) - 512] * 48/1023;
   //volt4 = [analogRead(A4) - 512] * 48/1023;
-
   refrescarPantalla();  
+  enviarDatos();
 }
 
 /* EOF - voltimetro.ino */
