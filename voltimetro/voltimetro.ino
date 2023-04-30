@@ -24,6 +24,7 @@ static float volt1 = 0.0;
 static float volt2 = 0.0;
 static float volt3 = 0.0;
 static float volt4 = 0.0;
+bool modo_AC = false;
 
 void setup() {
   // Se define la resolución de la pantalla
@@ -39,25 +40,29 @@ void refrescarPantalla(){
   lcd.setCursor(0, 2);
   lcd.print("V1: ");
   lcd.print(volt1);
-  lcd.print(" V");
+  if (modo_AC) { lcd.print(" Vrms"); }
+  else { lcd.print(" V"); }
 
   // Mostrar el voltaje 2
   lcd.setCursor(0, 3);
   lcd.print("V2: ");
   lcd.print(volt2);
-  lcd.print(" V");
+  if (modo_AC) { lcd.print(" Vrms"); }
+  else { lcd.print(" V"); }
 
   // Mostrar el voltaje 3
   lcd.setCursor(0, 4);
   lcd.print("V3: ");
   lcd.print(volt3);
-  lcd.print(" V");
+  if (modo_AC) { lcd.print(" Vrms"); }
+  else { lcd.print(" V"); }
 
   // Mostrar el voltaje 4
   lcd.setCursor(0, 5);
   lcd.print("V4: ");
   lcd.print(volt4);
-  lcd.print(" V");
+  if (modo_AC) { lcd.print(" Vrms"); }
+  else { lcd.print(" V"); }
 }
 
 void loop() {
