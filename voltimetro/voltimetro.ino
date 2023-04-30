@@ -33,6 +33,12 @@ void setup() {
   // Se define el baudrate para el puerto serial USART
   Serial.begin(9600, SERIAL_8N1);
 
+  // Se definen los pines medidores de voltaje como entrada
+  pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
+  pinMode(A2, INPUT);
+  pinMode(A3, INPUT);
+
 }
 
 void refrescarPantalla(){
@@ -81,10 +87,10 @@ void enviarDatos(){
 }
 
 void loop() {
-  //volt1 = [analogRead(A1) - 512] * 48/1023; 
-  //volt2 = [analogRead(A2) - 512] * 48/1023;
-  //volt3 = [analogRead(A3) - 512] * 48/1023;
-  //volt4 = [analogRead(A4) - 512] * 48/1023;
+  volt1 = -(analogRead(A0) - 512) * 48/1023; 
+  volt2 = -(analogRead(A1) - 512) * 48/1023;
+  volt3 = -(analogRead(A2) - 512) * 48/1023;
+  volt4 = -(analogRead(A3) - 512) * 48/1023;
   refrescarPantalla();  
   enviarDatos();
 }
