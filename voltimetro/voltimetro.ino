@@ -66,6 +66,11 @@ void refrescarPantalla(){
 }
 
 void loop() {
+  //volt1 = [analogRead(A1) - 512] * 48/1023; 
+  //volt2 = [analogRead(A2) - 512] * 48/1023;
+  //volt3 = [analogRead(A3) - 512] * 48/1023;
+  //volt4 = [analogRead(A4) - 512] * 48/1023;
+
   refrescarPantalla();  
 }
 
