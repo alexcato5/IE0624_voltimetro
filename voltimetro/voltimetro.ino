@@ -1,26 +1,4 @@
-/*
- * PCD8544 - Interface with Philips PCD8544 (or compatible) LCDs.
- *
- * Copyright (c) 2010 Carlos Rodrigues <cefrodrigues@gmail.com>
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+#include <PCD8544.h>
 
 /*
  * To use this sketch, connect the eight pins from your LCD like thus:
@@ -39,47 +17,51 @@
  * using a 3.3V variant of the Arduino, such as Sparkfun's Arduino Pro).
  */
 
-
-#include <PCD8544.h>
-
-
-// A custom glyph (a smiley)...
-static const byte glyph[] = { B00010000, B00110100, B00110000, B00110100, B00010000 };
-
-
 static PCD8544 lcd;
 
+// Definición de los cuatro voltajes por medir
+static float volt1 = 0.0;
+static float volt2 = 0.0;
+static float volt3 = 0.0;
+static float volt4 = 0.0;
 
 void setup() {
-  // PCD8544-compatible displays may have a different resolution...
+  // Se define la resolución de la pantalla
   lcd.begin(84, 48);
-
-  // Add the smiley to position "0" of the ASCII table...
-  lcd.createChar(0, glyph);
 }
 
+void refrescarPantalla(){
+  // Mostrar el título
+  lcd.setCursor(0, 0);
+  lcd.print("  VOLTIMETRO");
+
+  // Mostrar el voltaje 1
+  lcd.setCursor(0, 2);
+  lcd.print("V1: ");
+  lcd.print(volt1);
+  lcd.print(" V");
+
+  // Mostrar el voltaje 2
+  lcd.setCursor(0, 3);
+  lcd.print("V2: ");
+  lcd.print(volt2);
+  lcd.print(" V");
+
+  // Mostrar el voltaje 3
+  lcd.setCursor(0, 4);
+  lcd.print("V3: ");
+  lcd.print(volt3);
+  lcd.print(" V");
+
+  // Mostrar el voltaje 4
+  lcd.setCursor(0, 5);
+  lcd.print("V4: ");
+  lcd.print(volt4);
+  lcd.print(" V");
+}
 
 void loop() {
-  // Just to show the program is alive...
-  static int counter = 0;
-
-  // Write a piece of text on the first line...
-  lcd.setCursor(0, 0);
-  lcd.print("Hello, World!");
-
-  // Write the counter on the second line...
-  lcd.setCursor(0, 1);
-  lcd.print(counter, DEC);
-  lcd.write(' ');
-  lcd.write(0);  // write the smiley
-
-  // Use a potentiometer to set the LCD contrast...
-  // short level = map(analogRead(A0), 0, 1023, 0, 127);
-  // lcd.setContrast(level);
-
-  delay(200);
-  counter++;
+  refrescarPantalla();  
 }
 
-
-/* EOF - HelloWorld.ino */
+/* EOF - voltimetro.ino */
