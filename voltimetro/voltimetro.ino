@@ -24,7 +24,14 @@ static float volt1 = 0.0;
 static float volt2 = 0.0;
 static float volt3 = 0.0;
 static float volt4 = 0.0;
+
+float vp1 = 0.0;
+float vp2 = 0.0;
+float vp3 = 0.0;
+float vp4 = 0.0;
+
 bool modo_AC = false;
+bool refrescar = false;
 
 void setup() {
   // Se define la resolución de la pantalla
@@ -33,7 +40,7 @@ void setup() {
   // Se define el baudrate para el puerto serial USART
   Serial.begin(9600, SERIAL_8N1);
 
-  // Se definen los pines medidores de voltaje como entrada
+  // Se definen los pines medidores de voltaje como entradas
   pinMode(A0, INPUT);
   pinMode(A1, INPUT);
   pinMode(A2, INPUT);
@@ -48,28 +55,28 @@ void refrescarPantalla(){
 
   // Mostrar el voltaje 1
   lcd.setCursor(0, 2);
-  lcd.print("V1: ");
+  lcd.print("V1 ");
   lcd.print(volt1);
   if (modo_AC) { lcd.print(" Vrms"); }
   else { lcd.print(" V"); }
 
   // Mostrar el voltaje 2
   lcd.setCursor(0, 3);
-  lcd.print("V2: ");
+  lcd.print("V2 ");
   lcd.print(volt2);
   if (modo_AC) { lcd.print(" Vrms"); }
   else { lcd.print(" V"); }
 
   // Mostrar el voltaje 3
   lcd.setCursor(0, 4);
-  lcd.print("V3: ");
+  lcd.print("V3 ");
   lcd.print(volt3);
   if (modo_AC) { lcd.print(" Vrms"); }
   else { lcd.print(" V"); }
 
   // Mostrar el voltaje 4
   lcd.setCursor(0, 5);
-  lcd.print("V4: ");
+  lcd.print("V4 ");
   lcd.print(volt4);
   if (modo_AC) { lcd.print(" Vrms"); }
   else { lcd.print(" V"); }
@@ -86,12 +93,55 @@ void enviarDatos(){
   Serial.flush();
 }
 
+// Función para medir el valor Vp en AC
+void medirAC(){
+  vp1 = 0.0;
+  vp2 = 0.0;
+  vp3 = 0.0;
+  vp4 = 0.0;
+
+  for(int i = 0; i < 100; i++){ // Se realizan 100 mediciones
+    // Primero se leen los pines
+    int v1_tmp = analogRead(A0);    
+    int v2_tmp = analogRead(A1);
+    int v3_tmp = analogRead(A2);
+    int v4_tmp = analogRead(A3);
+
+    // Se comparan sus valores con los anteriores
+    if(v1_tmp > vp1) { vp1 = v1_tmp; }
+    if(v2_tmp > vp2) { vp2 = v2_tmp; }
+    if(v3_tmp > vp3) { vp3 = v3_tmp; }
+    if(v4_tmp > vp4) { vp4 = v4_tmp; }
+
+    delay(0.2); // 200 us de separación entre mediciones
+  }
+}
+
 void loop() {
-  volt1 = -(analogRead(A0) - 512) * 48/1023; 
-  volt2 = -(analogRead(A1) - 512) * 48/1023;
-  volt3 = -(analogRead(A2) - 512) * 48/1023;
-  volt4 = -(analogRead(A3) - 512) * 48/1023;
-  refrescarPantalla();  
+  // Se lee el pin 13 para verificar si se está operando en modo AC o DC
+  if(digitalRead(13)){ 
+    modo_AC = true;
+    refrescar = true; 
+  } else {
+    modo_AC = false;
+    if(refrescar){ lcd.clear(); }
+    refrescar = false;
+  }
+  
+
+  if (modo_AC){
+    medirAC();
+    volt1 = ( (511.0 - vp1) * 48.0/1023.0) / sqrt(2); 
+    volt2 = ( (511.0 - vp2) * 48.0/1023.0) / sqrt(2);
+    volt3 = ( (511.0 - vp3) * 48.0/1023.0) / sqrt(2);
+    volt4 = ( (511.0 - vp4) * 48.0/1023.0) / sqrt(2);
+    } else {
+    volt1 = (511.0 - analogRead(A0)) * 48.0/1023.0; 
+    volt2 = (511.0 - analogRead(A1)) * 48.0/1023.0;
+    volt3 = (511.0 - analogRead(A2)) * 48.0/1023.0;
+    volt4 = (511.0 - analogRead(A3)) * 48.0/1023.0;
+  }
+  refrescarPantalla(); 
   enviarDatos();
 }
 
