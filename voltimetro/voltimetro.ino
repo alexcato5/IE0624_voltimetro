@@ -33,6 +33,7 @@ float vp4 = 0.0;
 bool modo_AC = false;
 bool refrescar = false;
 
+
 void setup() {
   // Se define la resolución de la pantalla
   lcd.begin(84, 48);
@@ -46,7 +47,13 @@ void setup() {
   pinMode(A2, INPUT);
   pinMode(A3, INPUT);
 
+  // Se definen los pines encargados de los leds de seguridad como salidas
+  pinMode(8, OUTPUT); 
+  pinMode(9, OUTPUT); 
+  pinMode(10, OUTPUT); 
+  pinMode(11, OUTPUT);
 }
+
 
 void refrescarPantalla(){
   // Mostrar el título
@@ -82,6 +89,7 @@ void refrescarPantalla(){
   else { lcd.print(" V"); }
 }
 
+
 void enviarDatos(){
   Serial.print(volt1);
   Serial.flush();
@@ -92,6 +100,7 @@ void enviarDatos(){
   Serial.print(volt4);
   Serial.flush();
 }
+
 
 // Función para medir el valor Vp en AC
 void medirAC(){
@@ -117,6 +126,39 @@ void medirAC(){
   }
 }
 
+
+void leds(){
+  // Voltaje 1
+  if(volt1 >= 20 || volt1 <= -20){
+    digitalWrite(11, HIGH);
+  } else {
+    digitalWrite(11, LOW);
+  }
+
+  // Voltaje 2
+  if(volt2 >= 20 || volt2 <= -20){
+    digitalWrite(10, HIGH);
+  } else {
+    digitalWrite(10, LOW);
+  }
+
+  // Voltaje 3
+  if(volt3 >= 20 || volt3 <= -20){
+    digitalWrite(9, HIGH);
+  } else {
+    digitalWrite(9, LOW);
+  }
+
+  // Voltaje 4
+  if(volt4 >= 20 || volt4 <= -20){
+    digitalWrite(8, HIGH);
+  } else {
+    digitalWrite(8, LOW);
+  }
+  
+}//fin void leds
+
+
 void loop() {
   // Se lee el pin 13 para verificar si se está operando en modo AC o DC
   if(digitalRead(13)){ 
@@ -128,19 +170,19 @@ void loop() {
     refrescar = false;
   }
   
-
   if (modo_AC){
     medirAC();
-    volt1 = ( (511.0 - vp1) * 48.0/1023.0) / sqrt(2); 
-    volt2 = ( (511.0 - vp2) * 48.0/1023.0) / sqrt(2);
-    volt3 = ( (511.0 - vp3) * 48.0/1023.0) / sqrt(2);
-    volt4 = ( (511.0 - vp4) * 48.0/1023.0) / sqrt(2);
+    volt1 = ( -(511.0 - vp1) * 48.0/1023.0) / sqrt(2); 
+    volt2 = ( -(511.0 - vp2) * 48.0/1023.0) / sqrt(2);
+    volt3 = ( -(511.0 - vp3) * 48.0/1023.0) / sqrt(2);
+    volt4 = ( -(511.0 - vp4) * 48.0/1023.0) / sqrt(2);
     } else {
     volt1 = (511.0 - analogRead(A0)) * 48.0/1023.0; 
     volt2 = (511.0 - analogRead(A1)) * 48.0/1023.0;
     volt3 = (511.0 - analogRead(A2)) * 48.0/1023.0;
     volt4 = (511.0 - analogRead(A3)) * 48.0/1023.0;
   }
+  leds();
   refrescarPantalla(); 
   enviarDatos();
 }
