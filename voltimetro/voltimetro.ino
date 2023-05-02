@@ -25,15 +25,23 @@ static float volt2 = 0.0;
 static float volt3 = 0.0;
 static float volt4 = 0.0;
 
+// Definición de los voltajes pico para el modo AC
 float vp1 = 0.0;
 float vp2 = 0.0;
 float vp3 = 0.0;
 float vp4 = 0.0;
 
+// Definición de variable para cambio de modo DC/AC
 bool modo_AC = false;
+
+// Definición de variable para activar o desactivar la transmisión USART
+bool transmitir = false;
+
+// Definición de variable para refrescamiento de pantalla al cambiar de modo
 bool refrescar = false;
 
 
+// Función de configuración
 void setup() {
   // Se define la resolución de la pantalla
   lcd.begin(84, 48);
@@ -55,6 +63,7 @@ void setup() {
 }
 
 
+// Función que actualiza los valores en pantalla
 void refrescarPantalla(){
   // Mostrar el título
   lcd.setCursor(0, 0);
@@ -90,6 +99,7 @@ void refrescarPantalla(){
 }
 
 
+// Función que envía los datos actuales mediante USART
 void enviarDatos(){
   Serial.print(volt1);
   Serial.flush();
@@ -127,6 +137,7 @@ void medirAC(){
 }
 
 
+// Función para el control de los LEDs de alarma
 void leds(){
   // Voltaje 1
   if(volt1 >= 20 || volt1 <= -20){
@@ -159,6 +170,7 @@ void leds(){
 }//fin void leds
 
 
+// Ciclo central de operación
 void loop() {
   // Se lee el pin 13 para verificar si se está operando en modo AC o DC
   if(digitalRead(13)){ 
@@ -172,10 +184,10 @@ void loop() {
   
   if (modo_AC){
     medirAC();
-    volt1 = ( -(511.0 - vp1) * 48.0/1023.0) / sqrt(2); 
-    volt2 = ( -(511.0 - vp2) * 48.0/1023.0) / sqrt(2);
-    volt3 = ( -(511.0 - vp3) * 48.0/1023.0) / sqrt(2);
-    volt4 = ( -(511.0 - vp4) * 48.0/1023.0) / sqrt(2);
+    volt1 = ( (vp1 - 511.0) * 48.0/1023.0) / sqrt(2); 
+    volt2 = ( (vp2 - 511.0) * 48.0/1023.0) / sqrt(2);
+    volt3 = ( (vp3 - 511.0) * 48.0/1023.0) / sqrt(2);
+    volt4 = ( (vp4 - 511.0) * 48.0/1023.0) / sqrt(2);
     } else {
     volt1 = (511.0 - analogRead(A0)) * 48.0/1023.0; 
     volt2 = (511.0 - analogRead(A1)) * 48.0/1023.0;
@@ -184,7 +196,9 @@ void loop() {
   }
   leds();
   refrescarPantalla(); 
-  enviarDatos();
+
+  transmitir = digitalRead(12);
+  if (transmitir){ enviarDatos(); }
 }
 
 /* EOF - voltimetro.ino */
