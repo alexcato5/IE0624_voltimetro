@@ -172,9 +172,42 @@ void leds(){
 }//fin void leds
 
 
+void ledsAC(){
+  // Voltaje 1
+  if(volt1 >= 13.5){
+    digitalWrite(11, HIGH);
+  } else {
+    digitalWrite(11, LOW);
+  }
+
+  // Voltaje 2
+  if(volt2 >= 13.5){
+    digitalWrite(10, HIGH);
+  } else {
+    digitalWrite(10, LOW);
+  }
+
+  // Voltaje 3
+  if(volt3 >= 13.5){
+    digitalWrite(9, HIGH);
+  } else {
+    digitalWrite(9, LOW);
+  }
+
+  // Voltaje 4
+  if(volt4 >= 13.5){
+    digitalWrite(8, HIGH);
+  } else {
+    digitalWrite(8, LOW);
+  }
+  
+}//fin void ledsAC
+
+
 // Ciclo central de operación
 void loop() {
   // Se lee el pin 13 para verificar si se está operando en modo AC o DC
+  
   if(digitalRead(13)){ 
     modo_AC = true;
     refrescar = true; 
@@ -190,13 +223,17 @@ void loop() {
     volt2 = ( (vp2 - 511.0) * 48.0/1023.0) / sqrt(2);
     volt3 = ( (vp3 - 511.0) * 48.0/1023.0) / sqrt(2);
     volt4 = ( (vp4 - 511.0) * 48.0/1023.0) / sqrt(2);
+    ledsAC();
     } else {
     volt1 = (511.0 - analogRead(A0)) * 48.0/1023.0; 
     volt2 = (511.0 - analogRead(A1)) * 48.0/1023.0;
     volt3 = (511.0 - analogRead(A2)) * 48.0/1023.0;
     volt4 = (511.0 - analogRead(A3)) * 48.0/1023.0;
+    leds();
   }
-  leds();
+  
+  
+
   refrescarPantalla(); 
 
   transmitir = digitalRead(12);

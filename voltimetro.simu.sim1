@@ -78,13 +78,13 @@
 
 <item itemtype="Fixed Voltage" CircId="Fixed Voltage-755" mainComp="false" ShowProp="Voltage" Show_id="false" Show_Val="true" Pos="1028,460" rotation="0" hflip="-1" vflip="1" label="Fixed Voltage-755" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Voltage="-20 V" />
 
-<item itemtype="WaveGen" CircId="WaveGen-757" mainComp="false" ShowProp="Semi_Ampli" Show_id="false" Show_Val="true" Pos="1024,368" rotation="0" hflip="-1" vflip="1" label="WaveGen-757" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Running="true" Wave_Type="Sine" Freq="1000 Hz" Steps="100 Steps" Duty="50 %" Always_On="false" Semi_Ampli="24 V" Mid_Volt="0 V" />
+<item itemtype="WaveGen" CircId="WaveGen-757" mainComp="false" ShowProp="Semi_Ampli" Show_id="false" Show_Val="true" Pos="1024,368" rotation="0" hflip="-1" vflip="1" label="WaveGen-757" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Running="true" Wave_Type="Sine" Freq="1000 Hz" Steps="100 Steps" Duty="50 %" Always_On="false" Semi_Ampli="20 V" Mid_Volt="0 V" />
 
-<item itemtype="WaveGen" CircId="WaveGen-761" mainComp="false" ShowProp="Semi_Ampli" Show_id="false" Show_Val="true" Pos="1028,436" rotation="0" hflip="-1" vflip="1" label="WaveGen-761" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Running="true" Wave_Type="Sine" Freq="1000 Hz" Steps="100 Steps" Duty="50 %" Always_On="false" Semi_Ampli="24 V" Mid_Volt="0 V" />
+<item itemtype="WaveGen" CircId="WaveGen-761" mainComp="false" ShowProp="Semi_Ampli" Show_id="false" Show_Val="true" Pos="1028,436" rotation="0" hflip="-1" vflip="1" label="WaveGen-761" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Running="true" Wave_Type="Sine" Freq="1000 Hz" Steps="100 Steps" Duty="50 %" Always_On="false" Semi_Ampli="19 V" Mid_Volt="0 V" />
 
-<item itemtype="WaveGen" CircId="WaveGen-765" mainComp="false" ShowProp="Semi_Ampli" Show_id="false" Show_Val="true" Pos="1028,512" rotation="0" hflip="-1" vflip="1" label="WaveGen-765" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Running="true" Wave_Type="Sine" Freq="1000 Hz" Steps="100 Steps" Duty="50 %" Always_On="false" Semi_Ampli="24 V" Mid_Volt="0 V" />
+<item itemtype="WaveGen" CircId="WaveGen-765" mainComp="false" ShowProp="Semi_Ampli" Show_id="false" Show_Val="true" Pos="1028,512" rotation="0" hflip="-1" vflip="1" label="WaveGen-765" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Running="true" Wave_Type="Sine" Freq="1000 Hz" Steps="100 Steps" Duty="50 %" Always_On="false" Semi_Ampli="19 V" Mid_Volt="0 V" />
 
-<item itemtype="WaveGen" CircId="WaveGen-769" mainComp="false" ShowProp="Semi_Ampli" Show_id="false" Show_Val="true" Pos="1032,604" rotation="0" hflip="-1" vflip="1" label="WaveGen-769" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Running="true" Wave_Type="Sine" Freq="1000 Hz" Steps="100 Steps" Duty="50 %" Always_On="false" Semi_Ampli="24 V" Mid_Volt="0 V" />
+<item itemtype="WaveGen" CircId="WaveGen-769" mainComp="false" ShowProp="Semi_Ampli" Show_id="false" Show_Val="true" Pos="1032,604" rotation="0" hflip="-1" vflip="1" label="WaveGen-769" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Running="true" Wave_Type="Sine" Freq="1000 Hz" Steps="100 Steps" Duty="50 %" Always_On="false" Semi_Ampli="19 V" Mid_Volt="0 V" />
 
 <item itemtype="TextComponent" CircId="TextComponent-773" mainComp="false" Show_id="false" Show_Val="false" Pos="1092,616" rotation="0" hflip="1" vflip="1" label="TextComponent-773" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _Pixels" Border="1 _Pixels" Opacity="1" Font="Helvetica [Cronyx]" Font_Size="10 _Pixels" Fixed_Width="true" Text="V1" />
 
@@ -94,7 +94,7 @@
 
 <item itemtype="TextComponent" CircId="TextComponent-776" mainComp="false" Show_id="false" Show_Val="false" Pos="1088,372" rotation="0" hflip="1" vflip="1" label="TextComponent-776" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _Pixels" Border="1 _Pixels" Opacity="1" Font="Helvetica [Cronyx]" Font_Size="10 _Pixels" Fixed_Width="true" Text="V4" />
 
-<item itemtype="Voltage Source" CircId="Voltage Source-792" mainComp="false" ShowProp="MaxValue" Show_id="false" Show_Val="true" Pos="888,304" rotation="0" hflip="1" vflip="1" label="Voltage Source-792" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Value_Volt="5 V" MaxValue="24 V" />
+<item itemtype="Voltage Source" CircId="Voltage Source-792" mainComp="false" ShowProp="MaxValue" Show_id="false" Show_Val="true" Pos="888,304" rotation="0" hflip="1" vflip="1" label="Voltage Source-792" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Value_Volt="17.928 V" MaxValue="24 V" />
 
 <item itemtype="Voltage Source" CircId="Voltage Source-799" mainComp="false" ShowProp="MaxValue" Show_id="false" Show_Val="true" Pos="1144,448" rotation="0" hflip="1" vflip="1" label="Voltage Source-799" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Value_Volt="5 V" MaxValue="24 V" />
 
