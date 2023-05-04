@@ -109,6 +109,8 @@ void enviarDatos(){
   Serial.flush();
   Serial.print(volt4);
   Serial.flush();
+  Serial.print(modo_AC);
+  Serial.flush();
 }
 
 

@@ -8,7 +8,7 @@ ruta_resultados = './' + nombre_archivo + '/'
 Path(ruta_resultados).mkdir(parents=True, exist_ok=True)
 
 # Definición del DataFrame para guardar los resultados
-formato = { 'V1':[0.00], 'V2':[0.00], 'V3':[0.00], 'V4':[0.00] }
+formato = { 'V1':[0.00], 'V2':[0.00], 'V3':[0.00], 'V4':[0.00], 'AC':[0] }
 resultados_df = pd.DataFrame(formato)
 
 lectura = [] # Lista donde se guarda el número leído
@@ -37,10 +37,17 @@ while True:
 		lectura.clear()
 
 		if len(escritura) == 4:
+			# Se lee ahora el modo de lectura (AC/DC)
+			caracter_leido = puerto.read()
+			caracter_leido = caracter_leido.decode('utf-8')
+			if caracter_leido == '1':
+				escritura.append('AC')
+			else:
+				escritura.append('DC')
+
 			resultados_df.loc[len(resultados_df.index)] = escritura
 			print(escritura)
 			escritura.clear()
 
 			# Guardar resultados en formato CSV
 			resultados_df.to_csv(ruta_resultados + nombre_archivo + '.csv', encoding='utf-8', index=False)
-			
