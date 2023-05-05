@@ -8,7 +8,7 @@ ruta_resultados = './' + nombre_archivo + '/'
 Path(ruta_resultados).mkdir(parents=True, exist_ok=True)
 
 # Definición del DataFrame para guardar los resultados
-formato = { 'V1':[0.00], 'V2':[0.00], 'V3':[0.00], 'V4':[0.00], 'AC':[0] }
+formato = { 'V1':[0.00], 'V2':[0.00], 'V3':[0.00], 'V4':[0.00], 'Modo':[0] }
 resultados_df = pd.DataFrame(formato)
 
 lectura = [] # Lista donde se guarda el número leído
