@@ -174,28 +174,28 @@ void leds(){
 
 void ledsAC(){
   // Voltaje 1
-  if(volt1 >= 13.5){
+  if(volt1 >= 14.14){
     digitalWrite(11, HIGH);
   } else {
     digitalWrite(11, LOW);
   }
 
   // Voltaje 2
-  if(volt2 >= 13.5){
+  if(volt2 >= 14.14){
     digitalWrite(10, HIGH);
   } else {
     digitalWrite(10, LOW);
   }
 
   // Voltaje 3
-  if(volt3 >= 13.5){
+  if(volt3 >= 14.14){
     digitalWrite(9, HIGH);
   } else {
     digitalWrite(9, LOW);
   }
 
   // Voltaje 4
-  if(volt4 >= 13.5){
+  if(volt4 >= 14.14){
     digitalWrite(8, HIGH);
   } else {
     digitalWrite(8, LOW);
